@@ -1,248 +1,261 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>NED Dashboard Pro</title>
 
-<link rel="stylesheet" href="style.css">
-
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+
+:root{
+ --primary:#8B5A2B;
+ --green:#4CAF50;
+ --orange:#FF9800;
+ --red:#F44336;
+ --blue:#2196F3;
+ --bg:#f5f6f8;
+ --card:#ffffff;
+}
+
+body{
+ margin:0;
+ font-family:Segoe UI,Arial;
+ background:var(--bg);
+ padding-bottom:80px;
+}
+
+.header{
+ background:var(--primary);
+ color:white;
+ text-align:center;
+ padding:15px;
+ font-size:24px;
+ font-weight:bold;
+ position:sticky;
+ top:0;
+}
+
+.section{
+ padding:15px;
+}
+
+.card{
+ background:white;
+ border-radius:12px;
+ padding:15px;
+ margin-bottom:15px;
+ box-shadow:0 2px 6px rgba(0,0,0,0.1);
+}
+
+.kpi-grid{
+ display:grid;
+ grid-template-columns:repeat(2,1fr);
+ gap:10px;
+}
+
+.kpi{
+ font-size:28px;
+ font-weight:bold;
+ color:var(--primary);
+}
+
+table{
+ width:100%;
+ border-collapse:collapse;
+}
+
+th,td{
+ padding:10px;
+ border:1px solid #ddd;
+ text-align:center;
+}
+
+button{
+ background:var(--primary);
+ color:white;
+ border:none;
+ border-radius:8px;
+ padding:8px 12px;
+ cursor:pointer;
+}
+
+input{
+ width:100%;
+ padding:10px;
+ border:1px solid #ccc;
+ border-radius:8px;
+ box-sizing:border-box;
+ margin-bottom:10px;
+}
+
+.screen{
+ display:none;
+}
+
+.screen.active{
+ display:block;
+}
+
+.navbar{
+ position:fixed;
+ bottom:0;
+ left:0;
+ right:0;
+ background:white;
+ display:flex;
+ overflow-x:auto;
+ gap:6px;
+ padding:10px;
+ box-shadow:0 -2px 8px rgba(0,0,0,0.1);
+}
+
+.navbar button{
+ white-space:nowrap;
+}
+
+.dark{
+ background:#111;
+ color:white;
+}
+
+.dark .card{
+ background:#222;
+ color:white;
+}
+
+.dark table{
+ color:white;
+}
+
+.issue-row{
+ background:#fff4f4;
+ padding:10px;
+ margin-bottom:8px;
+ border-left:4px solid red;
+ border-radius:8px;
+}
+
+.dark .issue-row{
+ background:#331212;
+}
+
+.status-green{
+ color:green;
+ font-weight:bold;
+}
+
+.status-orange{
+ color:orange;
+ font-weight:bold;
+}
+
+.status-red{
+ color:red;
+ font-weight:bold;
+}
+
+</style>
 </head>
+
+<body>
+
+<div class="header">
+NED Dashboard Pro
+</div>
+
+<!-- DASHBOARD -->
+
+<div id="dashboard" class="screen active">
+
+<div class="section">
+
+<div class="card">
+
+<input
+id="searchBox"
+placeholder="Search 202, 205, HVAC..."
+onkeyup="searchTables()">
+
+</div>
+
+<div class="kpi-grid">
+
+<div class="card">
+<div class="kpi">78%</div>
+Progress
+</div>
+
+<div class="card">
+<div class="kpi">0.96</div>
+SPI
+</div>
+
+<div class="card">
+<div class="kpi">23</div>
+Issues
+</div>
+
+<div class="card">
+<div class="kpi">14/17</div>
+Milestones
+</div>
+
+</div>
+
+<div class="card">
+
+<h3>Project Health</h3>
+
+<p>Schedule:
+<span class="status-green">
+On Track
+</span>
+</p>
+
+<p>Fabrication:
+<span class="status-orange">
+Watch
+</span>
+</p>
+
+<p>Materials:
+<span class="status-red">
+Risk
+</span>
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>Overall Progress</h3>
+
+<canvas id="overallChart"></canvas>
+
+</div>
+
+<div class="card">
+
+<h3>Discipline Progress</h3>
+
+<canvas id="disciplineChart"></canvas>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- FABRICATION -->
 
 <div id="fabrication" class="screen">
 
 <div class="section">
 
 <div class="card">
+
 <h2>Fabrication Tracker</h2>
 
 <table>
-<tr>
-<th>Block</th>
-<th>Drawing</th>
-<th>Material</th>
-<th>Fab</th>
-<th>QC</th>
-</tr>
-
-<tr>
-<td>202</td>
-<td>🟡</td>
-<td>✅</td>
-<td>🟡</td>
-<td>⏳</td>
-</tr>
-
-<tr>
-<td>205</td>
-<td>✅</td>
-<td>✅</td>
-<td>✅</td>
-<td>🟡</td>
-</tr>
-
-</table>
-
-</div>
-
-</div>
-
-</div>
-
-<div id="materials" class="screen">
-
-<div class="section">
-
-<div class="card">
-
-<h2>Material Status</h2>
-
-<table>
-
-<tr>
-<th>Item</th>
-<th>Required</th>
-<th>Received</th>
-<th>%</th>
-</tr>
-
-<tr>
-<td>Equipment Support</td>
-<td>100</td>
-<td>80</td>
-<td>80%</td>
-</tr>
-
-<tr>
-<td>Mech Handling</td>
-<td>50</td>
-<td>42</td>
-<td>84%</td>
-</tr>
-
-<tr>
-<td>Platform Steel</td>
-<td>120</td>
-<td>60</td>
-<td>50%</td>
-</tr>
-
-</table>
-
-</div>
-
-</div>
-
-</div>
-
-<div id="drawings" class="screen">
-
-<div class="section">
-
-<div class="card">
-
-<h2>Shop Drawing Status</h2>
-
-<table>
-
-<tr>
-<th>Scope</th>
-<th>Status</th>
-</tr>
-
-<tr>
-<td>Equipment Support</td>
-<td>In Progress</td>
-</tr>
-
-<tr>
-<td>Mechanical Handling</td>
-<td>Submitted</td>
-</tr>
-
-<tr>
-<td>Platforms</td>
-<td>Pending</td>
-</tr>
-
-<tr>
-<td>Seafastening</td>
-<td>For Review</td>
-</tr>
-
-</table>
-
-</div>
-
-</div>
-
-</div>
-<body>
-
-<header>
-    <h1>NED Dashboard Pro</h1>
-</header>
-
-<div class="container">
-
-    <div class="kpi-grid">
-
-        <div class="card">
-            <h3>Progress</h3>
-            <div class="kpi">78%</div>
-        </div>
-
-        <div class="card">
-            <h3>SPI</h3>
-            <div class="kpi">0.96</div>
-        </div>
-
-        <div class="card">
-            <h3>Issues</h3>
-            <div class="kpi">23</div>
-        </div>
-
-        <div class="card">
-            <h3>Milestones</h3>
-            <div class="kpi">14/17</div>
-        </div>
-
-    </div>
-
-    <div class="card">
-        <h2>Discipline Progress</h2>
-        <canvas id="disciplineChart"></canvas>
-    </div>
-
-    <div class="card">
-        <h2>Fabrication Tracking</h2>
-
-        <table>
-
-            <tr>
-                <th>Block</th>
-                <th>Material</th>
-                <th>Drawing</th>
-                <th>Fab</th>
-                <th>QC</th>
-            </tr>
-
-            <tr>
-                <td>202</td>
-                <td>✅</td>
-                <td>🟡</td>
-                <td>🟡</td>
-                <td>⏳</td>
-            </tr>
-
-            <tr>
-                <td>205</td>
-                <td>✅</td>
-                <td>✅</td>
-                <td>🟢</td>
-                <td>🟡</td>
-            </tr>
-
-        </table>
-
-    </div>
-
-    <div class="card">
-
-        <h2>Open Issues</h2>
-
-        <input
-        type="text"
-        id="issueInput"
-        placeholder="New issue">
-
-        <button onclick="addIssue()">
-        Add
-        </button>
-
-        <ul id="issueList"></ul>
-
-    </div>
-
-</div>
-
-<nav>
-<button onclick="showScreen('fabrication')">🏗 Fab</button>
-<button onclick="showScreen('materials')">📦 Materials</button>
-<button onclick="showScreen('drawings')">📄 Drawings</button>
-    
-<button onclick="showDashboard()">
-Dashboard
-</button>
-<canvas id="overallChart"></canvas>
-<button onclick="toggleDarkMode()">
-Dark Mode
-</button>
-
-</nav>
-
-<script src="app.js"></script>
-
-</body>
-</html>
