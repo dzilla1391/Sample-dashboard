@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NED Dashboard Pro</title>
+
+<link rel="stylesheet" href="style.css">
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+<header>
+    <h1>NED Dashboard Pro</h1>
+</header>
+
+<div class="container">
+
+    <div class="kpi-grid">
+
+        <div class="card">
+            <h3>Progress</h3>
+            <div class="kpi">78%</div>
+        </div>
+
+        <div class="card">
+            <h3>SPI</h3>
+            <div class="kpi">0.96</div>
+        </div>
+
+        <div class="card">
+            <h3>Issues</h3>
+            <div class="kpi">23</div>
+        </div>
+
+        <div class="card">
+            <h3>Milestones</h3>
+            <div class="kpi">14/17</div>
+        </div>
+
+    </div>
+
+    <div class="card">
+        <h2>Discipline Progress</h2>
+        <canvas id="disciplineChart"></canvas>
+    </div>
+
+    <div class="card">
+        <h2>Fabrication Tracking</h2>
+
+        <table>
+
+            <tr>
+                <th>Block</th>
+                <th>Material</th>
+                <th>Drawing</th>
+                <th>Fab</th>
+                <th>QC</th>
+            </tr>
+
+            <tr>
+                <td>202</td>
+                <td>✅</td>
+                <td>🟡</td>
+                <td>🟡</td>
+                <td>⏳</td>
+            </tr>
+
+            <tr>
+                <td>205</td>
+                <td>✅</td>
+                <td>✅</td>
+                <td>🟢</td>
+                <td>🟡</td>
+            </tr>
+
+        </table>
+
+    </div>
+
+    <div class="card">
+
+        <h2>Open Issues</h2>
+
+        <input
+        type="text"
+        id="issueInput"
+        placeholder="New issue">
+
+        <button onclick="addIssue()">
+        Add
+        </button>
+
+        <ul id="issueList"></ul>
+
+    </div>
+
+</div>
+
+<nav>
+
+<button onclick="showDashboard()">
+Dashboard
+</button>
+
+<button onclick="toggleDarkMode()">
+Dark Mode
+</button>
+
+</nav>
+
+<script src="app.js"></script>
+
+</body>
+</html>
