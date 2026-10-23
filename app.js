@@ -40,7 +40,10 @@ backgroundColor:[
 }
 );
 
-const issues=[
+const issues =
+JSON.parse(
+localStorage.getItem("issues")
+) || [
 "Piping Spool Delay",
 "HVAC Clarification",
 "Electrical Manpower"
@@ -70,7 +73,7 @@ renderIssues();
 
 function addIssue(){
 
-const input=
+const input =
 document.getElementById("issueInput");
 
 if(input.value===""){
@@ -78,6 +81,11 @@ return;
 }
 
 issues.push(input.value);
+
+localStorage.setItem(
+"issues",
+JSON.stringify(issues)
+);
 
 input.value="";
 
