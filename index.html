@@ -65,4 +65,183 @@
     </div>
 </div>
 
-<!-- FABRICATION -
+<!-- FABRICATION -->
+<div id="fabrication" class="screen">
+    <div class="section">
+
+        <div class="card">
+            <h2>Fabrication Tracker</h2>
+
+            <table>
+                <tr>
+                    <th>Block</th>
+                    <th>Drawing</th>
+                    <th>Material</th>
+                    <th>Fab</th>
+                    <th>QC</th>
+                </tr>
+
+                <tr>
+                    <td>202</td>
+                    <td>🟡</td>
+                    <td>✅</td>
+                    <td>🟡</td>
+                    <td>⏳</td>
+                </tr>
+
+                <tr>
+                    <td>205</td>
+                    <td>✅</td>
+                    <td>✅</td>
+                    <td>✅</td>
+                    <td>🟡</td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+</div>
+
+<!-- MATERIALS -->
+<div id="materials" class="screen">
+    <div class="section">
+
+        <div class="card">
+
+            <h2>Material Status</h2>
+
+            <table>
+                <tr>
+                    <th>Item</th>
+                    <th>Required</th>
+                    <th>Received</th>
+                </tr>
+
+                <tr>
+                    <td>Equipment Support</td>
+                    <td>100</td>
+                    <td>80</td>
+                </tr>
+
+                <tr>
+                    <td>Mechanical Handling</td>
+                    <td>50</td>
+                    <td>42</td>
+                </tr>
+            </table>
+
+        </div>
+
+    </div>
+</div>
+
+<!-- DRAWINGS -->
+<div id="drawings" class="screen">
+    <div class="section">
+
+        <div class="card">
+
+            <h2>Shop Drawings</h2>
+
+            <table>
+                <tr>
+                    <th>Scope</th>
+                    <th>Status</th>
+                </tr>
+
+                <tr>
+                    <td>Equipment Support</td>
+                    <td>In Progress</td>
+                </tr>
+
+                <tr>
+                    <td>Mechanical Handling</td>
+                    <td>Submitted</td>
+                </tr>
+            </table>
+
+        </div>
+
+    </div>
+</div>
+
+<!-- MANPOWER -->
+<div id="manpower" class="screen">
+    <div class="section">
+
+        <div class="card">
+            <h2>Manpower</h2>
+
+            <p>Project Manager ✅</p>
+            <p>Offshore Engineer ✅</p>
+            <p>QA/QC ✅</p>
+            <p>HSE 🟡</p>
+
+            <div class="kpi">
+                83%
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- ISSUES -->
+<div id="issues" class="screen">
+    <div class="section">
+
+        <div class="card">
+
+            <h2>Issues</h2>
+
+            <input
+                id="issueInput"
+                placeholder="New issue">
+
+            <button onclick="addIssue()">
+                Add Issue
+            </button>
+
+            <div id="issueList"></div>
+
+        </div>
+
+    </div>
+</div>
+
+<!-- NAVIGATION -->
+<nav class="navbar">
+
+    <button onclick="showScreen('dashboard')">
+        Dashboard
+    </button>
+
+    <button onclick="showScreen('fabrication')">
+        Fab
+    </button>
+
+    <button onclick="showScreen('materials')">
+        Materials
+    </button>
+
+    <button onclick="showScreen('drawings')">
+        Drawings
+    </button>
+
+    <button onclick="showScreen('manpower')">
+        Team
+    </button>
+
+    <button onclick="showScreen('issues')">
+        Issues
+    </button>
+
+    <button onclick="toggleDarkMode()">
+        Dark
+    </button>
+
+</nav>
+
+<script src="app.js"></script>
+
+</body>
+</html>
