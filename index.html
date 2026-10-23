@@ -10,6 +10,134 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
+<div id="fabrication" class="screen">
+
+<div class="section">
+
+<div class="card">
+<h2>Fabrication Tracker</h2>
+
+<table>
+<tr>
+<th>Block</th>
+<th>Drawing</th>
+<th>Material</th>
+<th>Fab</th>
+<th>QC</th>
+</tr>
+
+<tr>
+<td>202</td>
+<td>🟡</td>
+<td>✅</td>
+<td>🟡</td>
+<td>⏳</td>
+</tr>
+
+<tr>
+<td>205</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>🟡</td>
+</tr>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+<div id="materials" class="screen">
+
+<div class="section">
+
+<div class="card">
+
+<h2>Material Status</h2>
+
+<table>
+
+<tr>
+<th>Item</th>
+<th>Required</th>
+<th>Received</th>
+<th>%</th>
+</tr>
+
+<tr>
+<td>Equipment Support</td>
+<td>100</td>
+<td>80</td>
+<td>80%</td>
+</tr>
+
+<tr>
+<td>Mech Handling</td>
+<td>50</td>
+<td>42</td>
+<td>84%</td>
+</tr>
+
+<tr>
+<td>Platform Steel</td>
+<td>120</td>
+<td>60</td>
+<td>50%</td>
+</tr>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+<div id="drawings" class="screen">
+
+<div class="section">
+
+<div class="card">
+
+<h2>Shop Drawing Status</h2>
+
+<table>
+
+<tr>
+<th>Scope</th>
+<th>Status</th>
+</tr>
+
+<tr>
+<td>Equipment Support</td>
+<td>In Progress</td>
+</tr>
+
+<tr>
+<td>Mechanical Handling</td>
+<td>Submitted</td>
+</tr>
+
+<tr>
+<td>Platforms</td>
+<td>Pending</td>
+</tr>
+
+<tr>
+<td>Seafastening</td>
+<td>For Review</td>
+</tr>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
 <body>
 
 <header>
@@ -100,7 +228,10 @@
 </div>
 
 <nav>
-
+<button onclick="showScreen('fabrication')">🏗 Fab</button>
+<button onclick="showScreen('materials')">📦 Materials</button>
+<button onclick="showScreen('drawings')">📄 Drawings</button>
+    
 <button onclick="showDashboard()">
 Dashboard
 </button>
