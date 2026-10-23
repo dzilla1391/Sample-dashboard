@@ -1,49 +1,52 @@
-const chart = new Chart(
-document.getElementById("disciplineChart"),
-{
-type:"bar",
+function showScreen(id){
 
-data:{
+document
+.querySelectorAll(".screen")
+.forEach(screen=>{
+screen.classList.remove("active");
+});
 
-labels:[
-"Structure",
-"Piping",
-"Architecture",
-"HVAC",
-"Electrical"
-],
-
-datasets:[{
-
-label:"Progress",
-
-data:[
-93,
-87,
-78,
-71,
-63
-],
-
-backgroundColor:[
-"#4caf50",
-"#2196f3",
-"#ff9800",
-"#9c27b0",
-"#f44336"
-]
-
-}]
+document
+.getElementById(id)
+.classList.add("active");
 
 }
 
+function searchTables(){
+
+let filter =
+document
+.getElementById("searchBox")
+.value
+.toUpperCase();
+
+let rows =
+document.querySelectorAll("table tr");
+
+rows.forEach((row,index)=>{
+
+if(index===0) return;
+
+if(
+row.innerText
+.toUpperCase()
+.includes(filter)
+){
+row.style.display="";
+}else{
+row.style.display="none";
 }
-);
+
+});
+
+}
 
 const issues =
 JSON.parse(
 localStorage.getItem("issues")
-) || [
+)
+||
+[
 "Piping Spool Delay",
 "HVAC Clarification",
 "Electrical Manpower"
@@ -51,34 +54,30 @@ localStorage.getItem("issues")
 
 function renderIssues(){
 
-const list=
-document.getElementById("issueList");
-
-list.innerHTML="";
+let html="";
 
 issues.forEach(issue=>{
 
-const li=
-document.createElement("li");
-
-li.innerHTML=issue;
-
-list.appendChild(li);
+html += `
+<div class="issue-row">
+${issue}
+</div>
+`;
 
 });
 
-}
+document
+.getElementById("issueList")
+.innerHTML = html;
 
-renderIssues();
+}
 
 function addIssue(){
 
 const input =
 document.getElementById("issueInput");
 
-if(input.value===""){
-return;
-}
+if(input.value==="") return;
 
 issues.push(input.value);
 
@@ -93,76 +92,72 @@ renderIssues();
 
 }
 
+renderIssues();
+
 function toggleDarkMode(){
 
 document.body.classList.toggle("dark");
 
-}
-
-function showDashboard(){
-
-window.scrollTo({
-top:0,
-behavior:"smooth"
-});
+localStorage.setItem(
+"darkmode",
+document.body.classList.contains("dark")
+);
 
 }
 
-function searchTables(){
-
-let filter =
-document.getElementById("searchBox")
-.value
-.toUpperCase();
-
-let rows =
-document.querySelectorAll("table tr");
-
-rows.forEach((row,index)=>{
-
-if(index===0) return;
-
-let txt = row.innerText;
-
-if(txt.toUpperCase().includes(filter)){
-
-row.style.display = "";
-
-}else{
-
-row.style.display = "none";
-
-}
-
-});
-
+if(
+localStorage.getItem("darkmode")
+==="true"
+){
+document.body.classList.add("dark");
 }
 
 new Chart(
 document.getElementById("overallChart"),
 {
 type:"doughnut",
-
 data:{
-labels:[
-"Completed",
-"Remaining"
-],
-
+labels:["Completed","Remaining"],
 datasets:[{
-
-data:[
-78,
-22
-],
-
+data:[78,22],
 backgroundColor:[
 "#4CAF50",
 "#DDDDDD"
 ]
-
 }]
 }
+}
+);
 
+new Chart(
+document.getElementById("disciplineChart"),
+{
+type:"bar",
+data:{
+labels:[
+"Structure",
+"Piping",
+"Architecture",
+"HVAC",
+"Electrical"
+],
+datasets:[{
+label:"Progress %",
+data:[
+93,
+87,
+78,
+71,
+63
+],
+backgroundColor:[
+"#4CAF50",
+"#2196F3",
+"#FF9800",
+"#9C27B0",
+"#F44336"
+]
+}]
+}
 }
 );
