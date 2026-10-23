@@ -137,3 +137,32 @@ row.style.display = "none";
 });
 
 }
+
+new Chart(
+document.getElementById("overallChart"),
+{
+type:"doughnut",
+
+data:{
+labels:[
+"Completed",
+"Remaining"
+],
+
+datasets:[{
+
+data:[
+78,
+22
+],
+
+backgroundColor:[
+"#4CAF50",
+"#DDDDDD"
+]
+
+}]
+}
+
+}
+);
