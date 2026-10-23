@@ -2,260 +2,38 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>NED Dashboard Pro</title>
 
+<link rel="stylesheet" href="style.css">
+
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-<style>
-
-:root{
- --primary:#8B5A2B;
- --green:#4CAF50;
- --orange:#FF9800;
- --red:#F44336;
- --blue:#2196F3;
- --bg:#f5f6f8;
- --card:#ffffff;
-}
-
-body{
- margin:0;
- font-family:Segoe UI,Arial;
- background:var(--bg);
- padding-bottom:80px;
-}
-
-.header{
- background:var(--primary);
- color:white;
- text-align:center;
- padding:15px;
- font-size:24px;
- font-weight:bold;
- position:sticky;
- top:0;
-}
-
-.section{
- padding:15px;
-}
-
-.card{
- background:white;
- border-radius:12px;
- padding:15px;
- margin-bottom:15px;
- box-shadow:0 2px 6px rgba(0,0,0,0.1);
-}
-
-.kpi-grid{
- display:grid;
- grid-template-columns:repeat(2,1fr);
- gap:10px;
-}
-
-.kpi{
- font-size:28px;
- font-weight:bold;
- color:var(--primary);
-}
-
-table{
- width:100%;
- border-collapse:collapse;
-}
-
-th,td{
- padding:10px;
- border:1px solid #ddd;
- text-align:center;
-}
-
-button{
- background:var(--primary);
- color:white;
- border:none;
- border-radius:8px;
- padding:8px 12px;
- cursor:pointer;
-}
-
-input{
- width:100%;
- padding:10px;
- border:1px solid #ccc;
- border-radius:8px;
- box-sizing:border-box;
- margin-bottom:10px;
-}
-
-.screen{
- display:none;
-}
-
-.screen.active{
- display:block;
-}
-
-.navbar{
- position:fixed;
- bottom:0;
- left:0;
- right:0;
- background:white;
- display:flex;
- overflow-x:auto;
- gap:6px;
- padding:10px;
- box-shadow:0 -2px 8px rgba(0,0,0,0.1);
-}
-
-.navbar button{
- white-space:nowrap;
-}
-
-.dark{
- background:#111;
- color:white;
-}
-
-.dark .card{
- background:#222;
- color:white;
-}
-
-.dark table{
- color:white;
-}
-
-.issue-row{
- background:#fff4f4;
- padding:10px;
- margin-bottom:8px;
- border-left:4px solid red;
- border-radius:8px;
-}
-
-.dark .issue-row{
- background:#331212;
-}
-
-.status-green{
- color:green;
- font-weight:bold;
-}
-
-.status-orange{
- color:orange;
- font-weight:bold;
-}
-
-.status-red{
- color:red;
- font-weight:bold;
-}
-
-</style>
 </head>
 
 <body>
 
-<div class="header">
-NED Dashboard Pro
-</div>
-
-<!-- DASHBOARD -->
+<header class="header">
+    NED Dashboard Pro
+</header>
 
 <div id="dashboard" class="screen active">
 
-<div class="section">
+    <div class="section">
 
-<div class="card">
+        <div class="card">
+            <input
+            id="searchBox"
+            placeholder="Search Block 202, 205..."
+            onkeyup="searchTables()">
+        </div>
 
-<input
-id="searchBox"
-placeholder="Search 202, 205, HVAC..."
-onkeyup="searchTables()">
+        <div class="kpi-grid">
 
-</div>
+            <div class="card">
+                <div class="kpi">78%</div>
+                <p>Progress</p>
+            </div>
 
-<div class="kpi-grid">
-
-<div class="card">
-<div class="kpi">78%</div>
-Progress
-</div>
-
-<div class="card">
-<div class="kpi">0.96</div>
-SPI
-</div>
-
-<div class="card">
-<div class="kpi">23</div>
-Issues
-</div>
-
-<div class="card">
-<div class="kpi">14/17</div>
-Milestones
-</div>
-
-</div>
-
-<div class="card">
-
-<h3>Project Health</h3>
-
-<p>Schedule:
-<span class="status-green">
-On Track
-</span>
-</p>
-
-<p>Fabrication:
-<span class="status-orange">
-Watch
-</span>
-</p>
-
-<p>Materials:
-<span class="status-red">
-Risk
-</span>
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Overall Progress</h3>
-
-<canvas id="overallChart"></canvas>
-
-</div>
-
-<div class="card">
-
-<h3>Discipline Progress</h3>
-
-<canvas id="disciplineChart"></canvas>
-
-</div>
-
-</div>
-
-</div>
-
-<!-- FABRICATION -->
-
-<div id="fabrication" class="screen">
-
-<div class="section">
-
-<div class="card">
-
-<h2>Fabrication Tracker</h2>
-
-<table>
+            <div class="card">
+                <div class="
