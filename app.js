@@ -107,3 +107,33 @@ behavior:"smooth"
 });
 
 }
+
+function searchTables(){
+
+let filter =
+document.getElementById("searchBox")
+.value
+.toUpperCase();
+
+let rows =
+document.querySelectorAll("table tr");
+
+rows.forEach((row,index)=>{
+
+if(index===0) return;
+
+let txt = row.innerText;
+
+if(txt.toUpperCase().includes(filter)){
+
+row.style.display = "";
+
+}else{
+
+row.style.display = "none";
+
+}
+
+});
+
+}
